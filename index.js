@@ -1,6 +1,6 @@
-var saveToWatchList = function(imdbID) {
+var saveToWatchList = function (imdbID) {
 
-    var movie = movieData.find(function(currentMovie) {
+    var movie = movieData.find(function (currentMovie) {
 
         return currentMovie.imdbID == imdbID;
 
@@ -9,20 +9,20 @@ var saveToWatchList = function(imdbID) {
     var watchListJSON = localStorage.getItem('watchlist');
     var watchlist = JSON.parse(watchListJSON);
 
-    if (watchlist == null ) {
-        
+    if (watchlist == null) {
+
         watchlist = [];
-    
+
     }
 
     watchlist.push(movie);
     watchListJSON = JSON.stringify(watchlist);
     localStorage.setItem('watchlist', watchListJSON)
 
-}    
+}
 
-document.addEventListener('DOMContentLoaded', function () {    
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     var renderMovies = function (movieArray) {
 
         var finalHTML = "";
@@ -55,7 +55,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // movieConatiner.innerHTML = renderMovies(movieData);
 
-    document.getElementById("search-form").addEventListener("submit", function(e){
+    document.getElementById("watchlist").addEventListener("click", function (e) {
+
+        e.preventDefault();
+        window.open('watchlist.html', '_self');
+
+    });
+    
+    
+    document.getElementById("search-form").addEventListener("submit", function (e) {
 
         e.preventDefault();
         movieConatiner.innerHTML = renderMovies(movieData);
