@@ -1,23 +1,27 @@
+var watchListJSON = localStorage.getItem('watchlist');
+var watchlist = JSON.parse(watchListJSON);
+
+if (watchlist == null) {
+
+    watchlist = [];
+
+}
+
 var removeFromWatchList = function (imdbID) {
 
-    var movie = movieData.find(function (currentMovie) {
+    var movie = watchlist.findIndex(function (currentMovie) {
 
         return currentMovie.imdbID == imdbID;
 
     });
 
-    var watchListJSON = localStorage.getItem('watchlist');
-    var watchlist = JSON.parse(watchListJSON);
 
-    if (watchlist == null) {
 
-        watchlist = [];
+    console.log(movie);
 
-    }
-
-    watchlist.push(movie);
-    watchListJSON = JSON.stringify(watchlist);
-    localStorage.setItem('watchlist', watchListJSON)
+    // watchlist.push(movie);
+    // watchListJSON = JSON.stringify(watchlist);
+    // localStorage.setItem('watchlist', watchListJSON)
 
 }
 
@@ -62,13 +66,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-   
-
-    var watchListJSON = localStorage.getItem('watchlist');
-    var watchlist = JSON.parse(watchListJSON);
-
     movieConatiner.innerHTML = renderMovies(watchlist);
     
-    console.log(watchlist);
+    // console.log(watchlist);
 
 });
