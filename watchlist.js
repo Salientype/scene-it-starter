@@ -10,11 +10,9 @@ if (watchlist == null) {
 var removeFromWatchList = function (imdbID) {
 
     var movieContainer = document.getElementById("movie-container");
-
     var movieHTML = document.getElementById(imdbID);
-
     movieContainer.removeChild(movieHTML);
-    
+
     var movie = watchlist.findIndex(function (currentMovie) {
 
         return currentMovie.imdbID == imdbID;
@@ -22,11 +20,8 @@ var removeFromWatchList = function (imdbID) {
     });
 
     watchlist.splice(movie, 1);
-
-    console.log(watchlist);
-    
     watchListJSON = JSON.stringify(watchlist);
-    localStorage.setItem('watchlist', watchListJSON)
+    localStorage.setItem('watchlist', watchListJSON);
 
 }
 
@@ -35,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var renderMovies = function (movieArray) {
 
         var finalHTML = "";
-
         var movieHTML = movieArray.map(function (movie) {
 
             var movieElement = `
@@ -53,16 +47,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         finalHTML = movieHTML.join(" ");
-
-        // console.log(movieHTML);
-        // console.log(finalHTML);
         return finalHTML;
 
     };
 
     var movieConatiner = document.getElementById("movie-container");
-
-    // movieConatiner.innerHTML = renderMovies(movieData);
 
     document.getElementById("searchlist").addEventListener("click", function (e) {
 
@@ -72,7 +61,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     movieConatiner.innerHTML = renderMovies(watchlist);
-    
-    // console.log(watchlist);
 
 });

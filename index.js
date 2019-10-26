@@ -1,5 +1,5 @@
 var saveToWatchList = function (imdbID) {
-    
+
     var movie = movieData.find(function (currentMovie) {
 
         return currentMovie.imdbID == imdbID;
@@ -44,9 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         finalHTML = movieHTML.join(" ");
-
-        // console.log(movieHTML);
-        // console.log(finalHTML);
         return finalHTML;
 
     };
@@ -57,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.open('watchlist.html', '_self');
 
     });
-    
-    
+
+
     document.getElementById("search-form").addEventListener("submit", function (e) {
 
         e.preventDefault();
@@ -66,18 +63,14 @@ document.addEventListener('DOMContentLoaded', function () {
         var urlEncodedSearchString = encodeURIComponent(searchString);
 
         axios.get('http://www.omdbapi.com/?apikey=3430a78&s=' + urlEncodedSearchString)
-            .then(function(response){
-                
-                // movieConatiner.innerHTML = renderMovies(response.data.search);
-                var movieContainer = document.getElementById("movie-container");
-                var movieHTML = renderMovies(response.data.Search);
-                movieContainer.innerHTML = movieHTML;
+            .then(function (response) {
 
                 movieData = response.data.Search;
+                var movieContainer = document.getElementById("movie-container");
+                var movieHTML = renderMovies(movieData);
+                movieContainer.innerHTML = movieHTML;
 
-                 // console.log(searchResults);
-
-        });
+            });
 
     });
 
