@@ -67,8 +67,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 movieData = response.data.Search;
                 var movieContainer = document.getElementById("movie-container");
-                var movieHTML = renderMovies(movieData);
-                movieContainer.innerHTML = movieHTML;
+
+                if (movieData == undefined) {
+
+                    movieContainer.innerHTML = "<h2>No Search words were entered!</h2>";
+
+                } else {
+                    
+                    var movieHTML = renderMovies(movieData);
+                    movieContainer.innerHTML = movieHTML;
+                    
+                }
 
             });
 
