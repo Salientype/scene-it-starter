@@ -9,19 +9,24 @@ if (watchlist == null) {
 
 var removeFromWatchList = function (imdbID) {
 
+    var movieContainer = document.getElementById("movie-container");
+
+    var movieHTML = document.getElementById(imdbID);
+
+    movieContainer.removeChild(movieHTML);
+    
     var movie = watchlist.findIndex(function (currentMovie) {
 
         return currentMovie.imdbID == imdbID;
 
     });
 
+    watchlist.splice(movie, 1);
 
-
-    console.log(movie);
-
-    // watchlist.push(movie);
-    // watchListJSON = JSON.stringify(watchlist);
-    // localStorage.setItem('watchlist', watchListJSON)
+    console.log(watchlist);
+    
+    watchListJSON = JSON.stringify(watchlist);
+    localStorage.setItem('watchlist', watchListJSON)
 
 }
 
